@@ -1,5 +1,4 @@
 import React from 'react';
-import { createElement } from './utils.js';
 import './styles.css';
 
 /**
@@ -9,6 +8,23 @@ import './styles.css';
  */
 function App({ store }) {
   const list = store.getState().list;
+
+  const formatSelectionCount = (count) => {
+    if (count === 0) {
+      return '';
+    } else {
+      const lastDigit = count % 10;
+      const lastTwoDigits = count % 100;
+
+      if (lastDigit === 1 && lastTwoDigits !== 11) {
+        return `${count} раз`;
+      } else if ([2, 3, 4].includes(lastDigit) && ![12, 13, 14].includes(lastTwoDigits)) {
+        return `${count} раза`;
+      } else {
+        return `${count} раз`;
+      }
+    }
+  };
 
   return (
     <div className='App'>
@@ -31,7 +47,7 @@ function App({ store }) {
                   {item.title}
                   {item.selectionCount > 0 && (
                     <span className='Item-selection-count'>
-                      {'  | '}Выделяли {item.selectionCount} раз
+                      {'  | '}Выделяли {formatSelectionCount(item.selectionCount)}
                     </span>
                   )}
                 </div>
@@ -50,5 +66,4 @@ function App({ store }) {
 }
 
 export default App;
-
 

@@ -76,8 +76,13 @@ class Store {
       ...this.state,
       list: this.state.list.map(item => {
         if (item.code === code) {
-          item.selected = !item.selected;
-          item.selectionCount = (item.selectionCount || 0) + 1; // Увеличение счетчика выделений
+          // Если элемент уже выделен, сбросить выделение и не увеличивать счетчик
+          if (item.selected) {
+            item.selected = false;
+          } else {
+            item.selected = true;
+            item.selectionCount = (item.selectionCount || 0) + 1;
+          }
         } else {
           item.selected = false; // Сброс выделения у других записей
         }
