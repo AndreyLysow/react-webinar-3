@@ -1,21 +1,17 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import './style.css';
+import PropTypes from "prop-types";
+import "./style.css";
 
-function Controls({onAdd}) {
+function Controls({ onAdd }) {
   return (
-    <div className='Controls'>
-      <button onClick={() => onAdd()}>Добавить</button>
+    <div className="Controls">
+      <button onClick={onAdd}>Добавить в корзину</button>
     </div>
-  )
+  );
 }
 
 Controls.propTypes = {
-  onAdd: PropTypes.func
+  onAdd: PropTypes.func.isRequired,
 };
 
-Controls.defaultProps = {
-  onAdd: () => {}
-}
-
-export default React.memo(Controls);
+export default Controls;

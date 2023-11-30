@@ -1,33 +1,35 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import Item from "../item";
-import './style.css';
+import Item from '../item';
+import styled from 'styled-components';
 
-function List({list, onDeleteItem, onSelectItem}) {
+const StyledList = styled.div`
+  /* Ваши стили здесь */
+`;
+
+const StyledListItem = styled.div`
+  /* Ваши стили здесь */
+`;
+
+function List({ list, onAddToCart }) {
   return (
-    <div className='List'>{
-      list.map(item =>
-        <div key={item.code} className='List-item'>
-          <Item item={item} onDelete={onDeleteItem} onSelect={onSelectItem}/>
-        </div>
-      )}
-    </div>
-  )
+    <StyledList>
+      {list.map(item => (
+        <StyledListItem key={item.code}>
+          <Item item={item} onAddToCart={onAddToCart} />
+        </StyledListItem>
+      ))}
+    </StyledList>
+  );
 }
 
 List.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape({
-    code: PropTypes.number
-  })).isRequired,
-  onDeleteItem: PropTypes.func,
-  onSelectItem: PropTypes.func
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      code: PropTypes.string,
+    })
+  ).isRequired,
+  onAddToCart: PropTypes.func.isRequired,
 };
-
-List.defaultProps = {
-  onDeleteItem: () => {
-  },
-  onSelectItem: () => {
-  },
-}
 
 export default React.memo(List);

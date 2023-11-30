@@ -1,42 +1,32 @@
-import React, {useState} from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import {plural} from "../../utils";
-import './style.css';
+import "./style.css";
 
 function Item(props) {
-
-  // Счётчик выделений
-  const [count, setCount] = useState(0);
-
   const callbacks = {
     onClick: () => {
       props.onSelect(props.item.code);
-      if (!props.item.selected) {
-        setCount(count + 1);
-      }
     },
-    onDelete: (e) => {
-      e.stopPropagation();
-      props.onDelete(props.item.code);
+    onAddToCart: () => {
+      props.onAddToCart(props.item.code);
+    },
+  };
 
-    }
-  }
+  const formatPrice = (price) => {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₽";
+  };
 
   return (
-    <div className={'Item' + (props.item.selected ? ' Item_selected' : '')}
-         onClick={callbacks.onClick}>
-      <div className='Item-code'>{props.item.code}</div>
-      <div className='Item-title'>
-        {props.item.title} {count ? ` | Выделяли ${count} ${plural(count, {
-        one: 'раз',
-        few: 'раза',
-        many: 'раз'
-      })}` : ''}
+    <div
+      className={"Item" + (props.item.selected ? " Item_selected" : "")}
+      onClick={callbacks.onClick}
+    >
+      <div className="Item-code">{props.item.code}</div>
+      <div className="Item-title">
+        {props.item.title}&nbsp;&nbsp;{formatPrice(props.item.price)}
       </div>
-      <div className='Item-actions'>
-        <button onClick={callbacks.onDelete}>
-          Удалить
-        </button>
+      <div className="Item-actions">
+        <button onClick={callbacks.onAddToCart}>Добавить</button>
       </div>
     </div>
   );
@@ -47,17 +37,14 @@ Item.propTypes = {
     code: PropTypes.number,
     title: PropTypes.string,
     selected: PropTypes.bool,
-    count: PropTypes.number
+    price: PropTypes.number,
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func
+  onAddToCart: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
 };
 
 Item.defaultProps = {
-  onDelete: () => {
-  },
-  onSelect: () => {
-  },
-}
+  onSelect: () => {},
+};
 
 export default React.memo(Item);
