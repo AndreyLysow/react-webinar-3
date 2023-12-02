@@ -17,20 +17,19 @@ function Item(props) {
   };
 
   return (
-    <div
-      className={"Item" + (props.item.selected ? " Item_selected" : "")}
-      onClick={callbacks.onClick}
-    >
+    <div className={"Item" + (props.item.selected ? " Item_selected" : "")} onClick={callbacks.onClick}>
+    <div className="Item-content">
       <div className="Item-code">{props.item.code}</div>
-      <div className="Item-title">
-        {props.item.title}&nbsp;&nbsp;{formatPrice(props.item.price)}
-      </div>
-      <div className="Item-actions">
-        <button onClick={callbacks.onAddToCart}>Добавить</button>
-      </div>
+      <div className="Item-title">{props.item.title}</div>
+      <div className="Item-price">{formatPrice(props.item.price)}</div>
     </div>
+    <div className="Item-actions">
+      <button onClick={callbacks.onAddToCart}>Добавить</button>
+    </div>
+  </div>
   );
 }
+
 
 Item.propTypes = {
   item: PropTypes.shape({
@@ -44,7 +43,10 @@ Item.propTypes = {
 };
 
 Item.defaultProps = {
-  onSelect: () => {},
-};
+  onDelete: () => {
+  },
+  onSelect: () => {
+  },
+}
 
 export default React.memo(Item);

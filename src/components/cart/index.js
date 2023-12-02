@@ -61,7 +61,9 @@ function CartSummary({ cart, onOpenCart, onRemoveItem }) {
           <>В корзине: <b>пусто</b></>
         )}
       </p>
-      <button onClick={openModal}>Перейти</button>
+      <div className="button-container" onClick={openModal}>
+      <button className="remove-button go-button">Перейти</button>
+      </div>
 
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} style={modalStyle}>
         <div className="modal-header">

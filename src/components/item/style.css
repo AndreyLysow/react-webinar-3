@@ -1,26 +1,47 @@
 .Item {
   display: flex;
-  justify-content: flex-start;
-  transition: background-color 1s;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.5s;
+  cursor: pointer;
+  border: 1px dashed #ccc; /* Серая тонкая рамка */
+  padding: 20px;
+  margin-bottom: 0; /* Убираем внутренний отступ между строками */
+  flex-wrap: nowrap;
+}
+
+.Item:hover {
+  border-color: #8a2be2;
+  border-width: 3px;
+  border-style: solid;
 }
 
 .Item_selected {
-  background: #75aaf1;
-  color: #fff;
+  border-color: #8a2be2;
+}
+
+.Item-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.Item-code,
+.Item-title,
+.Item-price {
+  margin: 0; /* Убираем внутренний отступ */
+  padding: 0; /* Убираем внутренний отступ */
 }
 
 .Item-code {
-  padding: 20px 10px 20px 20px;
+  padding-right: 10px; /* Отступ между кодом и названием */
 }
 
-.Item-title {
-  width: 100%;
-  padding: 20px 10px;
+.Item-price {
+  margin-left: auto; /* Помещаем цену в конец контейнера */
 }
 
 .Item-actions {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px 20px 20px 10px;
+  padding-left: 10px; /* Отступ между ценой и кнопкой */
 }
-
