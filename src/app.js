@@ -28,8 +28,6 @@ function App({ store }) {
       <Head title='Магазин' openCart={openCartModal} cartCount={cart.length} />
            <CartSummary cart={cart} onOpenCart={openCartModal} onRemoveItem={removeItemFromCart} />
       <List list={list} onAddToCart={addToCart} />
-      {/* Используйте новый компонент Cart вместо CartModal и CartSummary */}
-
     </PageLayout>
   );
 }
