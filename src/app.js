@@ -1,10 +1,8 @@
 import React, { useCallback } from 'react';
 import List from "./components/list";
-import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
-import CartModal from "./cart-modal";
-import CartSummary from "./cart-summary";
+import CartSummary from "./components/cart";  // Импортируйте CartSummary из папки cart
 
 function App({ store }) {
   const { list = [], cart = [], isCartModalOpen } = store.getState();
@@ -21,15 +19,17 @@ function App({ store }) {
     store.toggleCartModal();
   }, [store]);
 
+  const removeItemFromCart = useCallback((code) => {
+    store.removeFromCart(code);
+  }, [store]);
+
   return (
     <PageLayout>
       <Head title='Магазин' openCart={openCartModal} cartCount={cart.length} />
-      <Controls onAdd={addToCart} />
+           <CartSummary cart={cart} onOpenCart={openCartModal} onRemoveItem={removeItemFromCart} />
       <List list={list} onAddToCart={addToCart} />
-      {isCartModalOpen && (
-        <CartModal cart={cart} onClose={openCartModal} />
-      )}
-      <CartSummary cart={cart} onOpenCart={openCartModal} />
+      {/* Используйте новый компонент Cart вместо CartModal и CartSummary */}
+
     </PageLayout>
   );
 }
