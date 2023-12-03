@@ -43,7 +43,7 @@ function CartSummary({ cart, onOpenCart, onRemoveItem }) {
     content: {
       width: '80vw',
       maxWidth: 'none',
-      margin: 'auto',
+      margin: 0, /* Изменено значение марджина на 0 */
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
@@ -66,28 +66,31 @@ function CartSummary({ cart, onOpenCart, onRemoveItem }) {
       </div>
 
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} style={modalStyle}>
-        <div className="modal-header">
-          <h2>Корзина</h2>
-          <button className="remove-button" onClick={closeModal}>
-            Закрыть
-          </button>
-        </div>
-        {cartItems.map((item, index) => (
-          <div key={item.code} className="item">
-            <div>
-              {index + 1}. {item.title} - {item.count} шт. - {item.price * item.count} ₽
-            </div>
-            <button className="remove-button" onClick={() => handleRemoveItem(item.code)}>
-              Удалить
-            </button>
-          </div>
-        ))}
-        {totalItems > 0 && (
-          <div className="total">
-            Итого: {totalPrice} ₽
-          </div>
-        )}
-      </Modal>
+  <div className="modal-header">
+    <h2>Корзина</h2>
+    <button className="remove-button" onClick={closeModal}>
+      Закрыть
+    </button>
+  </div>
+  {cartItems.map((item, index) => (
+    <div key={item.code} className="item">
+      <div className="item-content">
+        <span className="item-info">{index + 1}. {item.title}</span>
+        <span className="item-details">
+          {item.count} шт. - {item.price * item.count} ₽
+        </span>
+      </div>
+      <button className="remove-button" onClick={() => handleRemoveItem(item.code)}>
+        Удалить
+      </button>
+    </div>
+  ))}
+  {totalItems > 0 && (
+    <div className="total">
+      Итого: {totalPrice} ₽
+    </div>
+  )}
+</Modal>
     </div>
   );
 }
