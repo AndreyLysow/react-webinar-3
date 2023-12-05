@@ -8,6 +8,8 @@
   padding: 20px;
   margin-bottom: 0; /* Убираем внутренний отступ между строками */
   flex-wrap: nowrap;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
 }
 
 .Item:hover {
@@ -41,6 +43,11 @@
 .Item-price {
   margin-left: auto; /* Помещаем цену в конец контейнера */
 }
+
+.Item-actions {
+  padding-left: 10px; /* Отступ между ценой и кнопкой */
+}
+
 
 .Item-actions {
   padding-left: 10px; /* Отступ между ценой и кнопкой */
