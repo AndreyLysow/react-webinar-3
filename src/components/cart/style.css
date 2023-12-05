@@ -8,17 +8,35 @@
 }
 
 .item {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
   display: flex;
+  width: 960px;
   justify-content: space-between;
   align-items: center;
+  transition: border-color 0.5s;
+  cursor: pointer;
+  border: 1px dashed #ccc; /* Серая тонкая рамка */
+  padding: 20px;
+  margin-bottom: 0; /* Убираем внутренний отступ между строками */
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+}
+
+.item:hover {
+  border-color: #8a2be2;
+  border-width: 3px;
+  border-style: solid;
 }
 
 .total {
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 50px;
+  width: 150px;
   margin-left: 700px;
+
 }
 
 
@@ -112,22 +130,32 @@
   background-color: #0000ff;
 }
 
-.item-content {
-  display: flex;
-  align-items: center;
-}
+
 
 .item-info {
   flex: 1;
-  margin-right: 10px; /* Изменено значение марджина на 10px */
+  margin-right: 10px; 
 }
 
 .item-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end; /* Изменено значение на flex-end */
-  justify-content: flex-end;
-  margin-left: 10px;
+  display : flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 650px;
+}
+
+.item-price {
+  display : flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 30px;
+}
+
+.item-count {
+  display : flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 30px;
 }
 
 .total {
@@ -140,6 +168,10 @@
   border: 1px solid #a6a5a5;
   border-radius: 4px;
   cursor: pointer;
+  color: #333;
+  padding: 2px 12px;
+  transition: border-color 0.5s, background 0.5s;
+}
   color: #333;
   padding: 2px 12px;
   transition: border-color 0.5s, background 0.5s;
